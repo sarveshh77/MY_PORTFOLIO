@@ -255,6 +255,7 @@ export const Particles = ({
     return remapped > 0 ? remapped : 0;
   };
 
+  // eslint-disable-next-line no-unused-vars
   const animate = () => {
     clearContext();
     circles.current.forEach((circle, i) => {
