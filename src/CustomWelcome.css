@@ -1,0 +1,152 @@
+/* Simple and Clean Welcome Overlay */
+.welcome-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px);
+  animation: overlayFadeIn 0.6s ease-out;
+}
+
+.welcome-overlay.fade-out {
+  animation: overlayFadeOut 1s ease-in-out forwards;
+}
+
+.welcome-card {
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  border-radius: 20px;
+  padding: 60px 80px;
+  text-align: center;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(6, 182, 212, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  transform: scale(0.8);
+  animation: cardSlideUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.welcome-text {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
+}
+
+.welcome-text.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.main-title {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 3.2rem;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  background: linear-gradient(135deg, #06b6d4, #3b82f6, #8b5cf6);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+.sub-title {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  letter-spacing: 0.5px;
+  animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+/* Animations */
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes overlayFadeOut {
+  from {
+    opacity: 1;
+    backdrop-filter: blur(2px);
+  }
+  to {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+}
+
+@keyframes cardSlideUp {
+  from {
+    transform: scale(0.8) translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes textGlow {
+  from {
+    text-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+  }
+  to {
+    text-shadow: 0 0 30px rgba(6, 182, 212, 0.6);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .welcome-card {
+    padding: 40px 50px;
+    margin: 0 20px;
+  }
+  
+  .main-title {
+    font-size: 2.4rem;
+  }
+  
+  .sub-title {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-card {
+    padding: 30px 40px;
+    margin: 0 20px;
+  }
+  
+  .main-title {
+    font-size: 1.8rem;
+  }
+  
+  .sub-title {
+    font-size: 0.9rem;
+  }
+}
